@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mi Presupuesto Personal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#765D67" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <div class="container">
@@ -60,8 +61,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
-
   <div id="edit-modal" class="modal">
     <div class="modal-content">
       <h2>Editar gasto</h2>
@@ -72,5 +71,16 @@
       <button onclick="closeEditModal()">Cancelar</button>
     </div>
   </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(reg => console.log('✅ Service worker registrado:', reg))
+        .catch(err => console.error('❌ Error al registrar service worker:', err));
+    } else {
+      console.warn('⚠️ Service Worker no soportado en este navegador');
+    }
+  </script>
 </body>
 </html>
