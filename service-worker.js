@@ -1,15 +1,16 @@
+const CACHE_NAME = 'presupuesto-store-v1';
 
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open('presupuesto-store').then(function(cache) {
+    caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-        '/',
-        '/index.html',
-        '/styles.css',
-        '/app.js',
-        '/manifest.json',
-        '/icon-192.png',
-        '/icon-512.png'
+        '/presupuestogame/',
+        '/presupuestogame/index.html',
+        '/presupuestogame/styles.css',
+        '/presupuestogame/app.js',
+        '/presupuestogame/manifest.json',
+        '/presupuestogame/icon-192.png',
+        '/presupuestogame/icon-512.png'
       ]);
     })
   );
