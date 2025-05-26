@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Presupuesto Personal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Mi Presupuesto Personal</h1>
+
+    <form id="expense-form">
+      <input type="text" id="description" placeholder="Descripción del gasto" required />
+      <input type="number" id="amount" placeholder="Monto" min="0.01" step="0.01" required />
+      <input type="date" id="date" required />
+      <select id="category">
+        <option value="Necesidades">Necesidades</option>
+        <option value="Gustos">Gustos</option>
+        <option value="Ahorros">Ahorros</option>
+      </select>
+      <button type="submit">Agregar</button>
+    </form>
+
+    <div class="summary">
+      <div>
+        Ingresos:
+        <span id="income">$0.00</span>
+      </div>
+      <div>
+        Gastos:
+        <span id="total">$0.00</span>
+      </div>
+      <div>
+        Balance:
+        <span id="balance">$0.00</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button onclick="openIncomeModal()">Agregar ingreso</button>
+      <input type="date" id="filter-date" onchange="filterByDate()" />
+      <button onclick="exportCSV()">Exportar CSV</button>
+      <button onclick="toggleTheme()">Cambiar tema</button>
+    </div>
+
+    <ul class="expense-list" id="expense-list"></ul>
+    <canvas id="chart"></canvas>
+  </div>
+
+  <div id="income-modal" class="modal">
+    <div class="modal-content">
+      <h2>Nuevo ingreso</h2>
+      <input type="number" id="income-amount" placeholder="Monto" />
+      <input type="date" id="income-date" />
+      <button onclick="addIncome()">Guardar ingreso</button>
+      <button onclick="closeIncomeModal()">Cancelar</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+  <div id="edit-modal" class="modal">
+    <div class="modal-content">
+      <h2>Editar gasto</h2>
+      <input type="text" id="edit-desc" placeholder="Descripción" />
+      <input type="number" id="edit-amount" placeholder="Monto" />
+      <input type="date" id="edit-date" />
+      <button onclick="saveEdit()">Guardar cambios</button>
+      <button onclick="closeEditModal()">Cancelar</button>
+    </div>
+  </div>
+</body>
+</html>
